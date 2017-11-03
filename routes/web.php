@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+//post的CRUD
 Route::get('/posts', '\App\Http\Controller\PostController@index');
 Route::get('/posts/{post}', '\App\Http\Controller\PostController@show');
 Route::get('/posts/create', '\App\Http\Controller\PostController@create');
