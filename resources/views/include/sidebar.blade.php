@@ -1,5 +1,4 @@
-<!-- Sidebar Widgets Column -->
-<div class="col-md-4">
+
 
   <!-- Search Widget -->
   <div class="card my-4">
@@ -56,5 +55,3 @@
       You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
     </div>
   </div>
-
-</div>
