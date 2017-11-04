@@ -16,10 +16,10 @@ Route::get('/', function () {
 });
 
 //post的CRUD
-Route::get('/posts', '\App\Http\Controller\PostController@index');
-Route::get('/posts/{post}', '\App\Http\Controller\PostController@show');
-Route::get('/posts/create', '\App\Http\Controller\PostController@create');
-Route::post('/posts', '\App\Http\Controller\PostController@store');
-Route::get('/posts/{post}/edit', '\App\Http\Controller\PostController@edit');
-Route::put('/posts/{post}', '\App\Http\Controller\PostController@update');
-Route::get('/posts/delete', '\App\Http\Controller\PostController@delete');
+Route::get('/posts', '\App\Http\Controllers\PostController@index');
+Route::get('/posts/{post}', '\App\Http\Controllers\PostController@show');
+Route::get('/posts/create', '\App\Http\Controllers\PostController@create');
+Route::post('/posts', '\App\Http\Controllers\PostController@store');
+Route::get('/posts/{post}/edit', '\App\Http\Controllers\PostController@edit');
+Route::put('/posts/{post}', '\App\Http\Controllers\PostController@update');
+Route::get('/posts/delete', '\App\Http\Controllers\PostController@delete');
