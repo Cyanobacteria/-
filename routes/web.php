@@ -27,4 +27,4 @@ Route::get('/posts/create', 'PostController@create');
 Route::post('/posts', '\App\Http\Controllers\PostController@store');
 Route::get('/posts/{post}/edit', '\App\Http\Controllers\PostController@edit');
 Route::put('/posts/{post}', '\App\Http\Controllers\PostController@update');
-Route::get('/posts/delete', '\App\Http\Controllers\PostController@delete');
+Route::delete('/posts/{post}', '\App\Http\Controllers\PostController@delete');

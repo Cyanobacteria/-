@@ -15,5 +15,11 @@
     <button class="btn btn-lg">送出</button>
 </form>
 
+<form action="{{ url("/posts/$post->id") }}" method="post" style="display: inline;">
+    {{ csrf_field() }}
+    <input type="hidden" name="_method" value="delete" >
+    <!--<input type="hidden" name="id" value="{{ $post->id }}">-->
+    <button type="submit" class="btn btn-danger">删除</button>
+</form>
 
 @endsection
