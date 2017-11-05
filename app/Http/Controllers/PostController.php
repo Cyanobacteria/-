@@ -12,26 +12,40 @@ class PostController extends Controller
     }
    
     public function show(){
-    echo "show";
+    //echo "show";
     }
    
      public function create(){
-      echo "create";  
-      //return view("post/create");
+      //權限控制？
+      //echo "create";  
+      return view("post/create");
         
     }
    
      public function store(){
-
-
+     
+     //dd(request());
+     $post = new Post;
+     $post->title = request()->title;
+     $post->content = request()->content;
+     if($post->save() == true)
+     {
+         return redirect('posts');
+     }
+     else
+     {   //這邊應該要順便回傳error message
+         return redirect('posts/create');
+     }                
+     
     }
     public function edit(){
-
-
+        $post_id = request()->post;
+        $post = Post::find($post_id);
+        return view('post/edit', compact('post'));
     }
     public function update(){
-
-
+        echo $post->id;
+    
     }
     public function delete(){
 

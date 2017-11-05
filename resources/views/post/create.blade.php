@@ -1,9 +1,16 @@
 @extends('layouts.template_one')
 @section('content')
-<div class="form-group row">
-  <label for="example-text-input" class="col-2 col-form-label">Text</label>
-  <div class="col-10">
-    <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
-  </div>
-</div>
+
+ <h1 class="my-4">新增文章</h1>
+<br>
+<form action="{{url('/posts')}}" method="post">
+    {!! csrf_field() !!} 
+    <input type="text" name="title" class="form-control" required="required" placeholder="请輸入title">
+    <br>
+    <textarea name="content" rows="10" class="form-control" required="required" placeholder="请輸入content"></textarea>
+    <br>
+    <button class="btn btn-lg">送出</button>
+</form>
+
+
 @endsection

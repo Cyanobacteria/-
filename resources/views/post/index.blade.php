@@ -2,8 +2,8 @@
 @section('content')
 
 
-  <h1 class="my-4">Page Heading
-    <small>Secondary Text</small>
+  <h1 class="my-4">文章列表
+    <small></small>
   </h1>
   @foreach($posts as $post)
   <!-- Blog Post -->
