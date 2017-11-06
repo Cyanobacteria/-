@@ -12,9 +12,11 @@ class PostController extends Controller
          return view("post/index", compact('posts'));
      }
    
-     public function show()
-     {
-         //echo "show";
+     public function show(Post $post)
+     {   //echo $post->title;
+         //dd($post);
+         return view('post/show', compact('post'));
+         
      }
    
      public function create()
@@ -39,15 +41,15 @@ class PostController extends Controller
          return redirect('posts/create');
          }                
      }
-     public function edit()
+     public function edit(/*Post $post*/)
      {
         $post_id = request()->post;
         $post = Post::find($post_id);
         return view('post/edit', compact('post'));
      }
-     public function update()
+     public function update(/*Post $post*/)
      {
-        
+       //dd($post); 
         $post_id = request()->id;
         $post = Post::find($post_id);
         $post->title = request()->title; 
