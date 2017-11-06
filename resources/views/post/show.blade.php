@@ -7,7 +7,6 @@
   </h1>
   <!-- Blog Post -->
   <div class="card mb-4">
-    <button class="btn"><a href="{{ url("/posts/" . $post->id . "/edit") }}">edit</a></button>
     <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
     <div class="card-body">
       <h2 class="card-title">{{$post->title}}</h2>
@@ -19,6 +18,8 @@
       <a href="#">Start Bootstrap</a>
     </div>
   </div>
+    <a href="{{ url("/posts/" . $post->id . "/edit") }}" class="btn btn-primary btn-lg">編輯</a>
+    <a href="{{url('/posts' . '#post' . $post->id)}}" class="btn btn-primary btn-lg">返回</a>
 
 
 @endsection
