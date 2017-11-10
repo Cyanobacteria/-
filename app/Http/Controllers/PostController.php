@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+//是否可以寫一個檔然後include進來？
+//這樣就不用每個需要的都再寫一次
+use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
      public function index()
@@ -21,10 +24,16 @@ class PostController extends Controller
    
      public function create()
      {
-        //權限控制？
-        //echo "create";  
-        return view("post/create");
         
+        //echo "create";
+        if(Auth::check())
+        {  
+            return view("post/create");
+        }
+        else
+        {
+            return redirect('posts');
+        }
      }
    
      public function store(Post $post)

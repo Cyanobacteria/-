@@ -1,5 +1,5 @@
 <?php
-
+//該如何整理程式碼呢？
 namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
@@ -13,6 +13,10 @@ class RegisterController extends Controller
     
     public function index()
     {
+        if(\Auth::check())
+        {
+            return redirect('posts'); 
+        }
         return view('user/register');
     }
     public function register()
@@ -22,6 +26,10 @@ class RegisterController extends Controller
         //或許是最佳實踐吧？
         //$this->validate
         //不對，就會跳轉回本來的頁面，並返回 $errors
+        if(\Auth::check())
+        {
+            return redirect('posts'); 
+        }
         $this->validate(request(), [
             'name'     => 'required|min:3',
             'email'    => 'required|unique:users,email|email',

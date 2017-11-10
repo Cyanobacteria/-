@@ -10,6 +10,10 @@ class LoginController extends Controller
     //
     public function index()
     {
+        if(\Auth::check())
+        {
+            return redirect('posts'); 
+        }
         return view('user/login');
     }
     public function login()
@@ -17,6 +21,10 @@ class LoginController extends Controller
         //dd(request()->all());
         //dd(boolval(1));
         //dd(boolval(0));
+        if(\Auth::check())
+        {
+            return redirect('posts'); 
+        }
         if(request('is_remember') == 'on')
         {
             $is_remember = true;
