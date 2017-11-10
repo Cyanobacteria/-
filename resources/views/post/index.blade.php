@@ -16,13 +16,15 @@
     </div>
     <div class="card-footer text-muted">
       {{$post->created_at}} by <!-- 這裡要寫{{$post->user}} -->
-      <a href="#">Start Bootstrap</a>
+      <!--  不是物件，是一個array  -->
+      <a href="#">{{ App\User::find($post->user_id)['name'] }}</a>
+      <!-- 要在model 中建立關聯後再來改 -->
     </div>
   </div>
   @endforeach
 
-
-  <!-- Pagination -->
+  
+ <!--
   <ul class="pagination justify-content-center mb-4">
     <li class="page-item">
       <a class="page-link" href="#">&larr; Older</a>
@@ -31,6 +33,6 @@
       <a class="page-link" href="#">Newer &rarr;</a>
     </li>
   </ul>
-
+  -->
 
 @endsection

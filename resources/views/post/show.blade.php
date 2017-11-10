@@ -15,10 +15,12 @@
     </div>
     <div class="card-footer text-muted">
       {{$post->created_at}} by <!-- 這裡要寫{{$post->user}} -->
-      <a href="#">Start Bootstrap</a>
+      <a href="#">{{ App\User::find($post->user_id)['name'] }}</a>
     </div>
   </div>
+    @if ($post->user_id == \Auth::id())
     <a href="{{ url("/posts/" . $post->id . "/edit") }}" class="btn btn-primary btn-lg">編輯</a>
+    @endif
     <a href="{{url('/posts' . '#post' . $post->id)}}" class="btn btn-primary btn-lg">返回</a>
 
 
