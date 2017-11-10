@@ -16,7 +16,25 @@ class RegisterController extends Controller
         return view('user/register');
     }
     public function register()
-    {   
+    {  
+        //compact() 
+        //bcrypt()
+        //或許是最佳實踐吧？
+        //$this->validate
+        //不對，就會跳轉回本來的頁面，並返回 $errors
+        $this->validate(request(), [
+            'name'     => 'required|min:3',
+            'email'    => 'required|unique:users,email|email',
+            'password' => 'required|min:6|max:20|confirmed'
+        ]);        
+        $name = request('name');
+        $email = request('email');
+        $password = bcrypt(request('password'));
+        User::create(compact('name', 'email', 'password'));
+        return redirect('login');
+        /*
+        //再看看最佳實踐如何
+        //回頭看還真囉唆 
         $password = request()->password;
         $password_confirmation = request()->password_confirmation;
         //確認密碼是否相同
@@ -34,6 +52,7 @@ class RegisterController extends Controller
         else
         {
             return redirect('/register');
-        }
+        }*/
+ 
     }
 }

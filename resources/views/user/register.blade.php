@@ -1,9 +1,14 @@
 @extends('layouts.template_one')
 
 @section('content')
-
+@include('include.errors')
 <form action="{{url('register')}}" method="POST">
     {!! csrf_field() !!}
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" name="name" id="Name" aria-describedby="nameHelp" placeholder="Enter name">
+    <small id="nameHelp" class="form-text text-muted">Nickname</small>
+  </div>
   <div class="form-group">
     <label for="email">Email address</label>
     <input type="email" class="form-control" name="email" id="Email" aria-describedby="emailHelp" placeholder="Enter email">
