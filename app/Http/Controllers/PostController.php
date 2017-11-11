@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
        /*
        1.傳值方式有幾種？ 原生php way 跟laravel way 差在哪裡 又各有哪些？
        2.http method get post put patch delete
@@ -40,18 +43,23 @@ class PostController extends Controller
             return redirect('posts');
         }
      }
-   
+     //compact方法並不是何時都合適這樣用 
      public function store(/*Post $post*/)
      {   //dd($post);
-         //$post = new Post;
-         //使用綁定是這樣寫？
-         //$post->title = request()->title;
-         //$post->content = request()->content;
-         //$post->user_id = \Auth::id();
-         $title = request()->title;
-         $content = request()->content;
-         $user_id = \Auth::id();
-         if(/*$post->save()*/Post::create(compact('title', 'content', 'user_id')) == true)
+         $path = request()->file('image')->storePublicly($post->user_id);
+         Storage::move($path,"public/$path");
+         $image = "/storage/" . $path;
+         $post = new Post;
+         $post->title = request()->title;
+         $post->content = request()->content;
+         $post->user_id = \Auth::id();
+         $post->image = $image;
+         //$title = request()->title;
+         //$content = request()->content;
+         //$user_id = \Auth::id();
+         //$path = request()->file('image')->store(time());
+         //$path = request()->image->store(time());
+         if($post->save()  /*Post::create(compact('title', 'content', 'user_id', 'image')) == true*/)
          {
              //有辦法捕獲剛剛才新建的文章的id嗎?
              
