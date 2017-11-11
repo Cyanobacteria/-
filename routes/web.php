@@ -11,24 +11,32 @@
 |
 */
 
+//upload
+
+Route::group(['namespace' => 'Upload'], function(){
+Route::get('upload','UploadController@index');
+Route::post('upload','UploadController@store');
+
+
+});
+
+
+
+
+
+
+
 //用戶註冊登入相關
-
 Route::group(['namespace' => 'User'], function(){
-
-
-Route::get('register', 'RegisterController@index');
-Route::post('register', 'RegisterController@register');
-Route::get('login', 'LoginController@index');
-Route::post('login', 'LoginController@login');
-Route::get('logout', 'LoginController@logout');
-Route::get('/user/self', 'UserController@index');
-Route::get('/user/self/set', 'UserController@set');
-Route::post('/user/self/set', 'UserController@store');
-
-
-
-
-
+    Route::get('register', 'RegisterController@index');
+    Route::post('register', 'RegisterController@register');
+    Route::get('login', 'LoginController@index');
+    Route::post('login', 'LoginController@login');
+    Route::get('logout', 'LoginController@logout');
+    //下三個還沒寫好
+    Route::get('/user/self', 'UserController@index');
+    Route::get('/user/self/set', 'UserController@set');
+    Route::post('/user/self/set', 'UserController@store');
 });
 
 
