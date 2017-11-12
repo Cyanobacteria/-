@@ -18,22 +18,20 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
      public function index()
-     {
+     {   
          $posts = Post::orderBy('created_at', 'desc')->get();
          return view("post/index", compact('posts'));
      }
    
      public function show(Post $post)
-     {   //echo $post->title;
-         //dd($post);
+     {   //使用model綁定
          return view('post/show', compact('post'));
-         
      }
    
      public function create()
      {
         
-        //echo "create";
+        //有登入才可以發文
         if(Auth::check())
         {  
             return view("post/create");
@@ -46,9 +44,13 @@ class PostController extends Controller
      //compact方法並不是何時都合適這樣用 
      public function store(/*Post $post*/)
      {   //dd($post);
+         //不曉得為什直接存會放在/storage/app/ 而不是storage/app/public/
          $path = request()->file('image')->storePublicly($post->user_id);
+         //預設的公開路徑是在/storage/app/public/  所以把檔案移動
          Storage::move($path,"public/$path");
+         //公開的路徑是/public/這個位置,使用命令創造了路徑連結 /public/storage/  等於  /storage/app/public/
          $image = "/storage/" . $path;
+         //要存入的值
          $post = new Post;
          $post->title = request()->title;
          $post->content = request()->content;
@@ -73,8 +75,8 @@ class PostController extends Controller
                         
      }
      public function edit(/*Post $post*/  /*$post*/)
-     {   //dd($post);
-         //dd(request()->post);
+     {   
+         
          //實現是實現了，那如果\Auth::id()不存在呢？ 更好的實現方法是？
          $post_id = request()->post;
          $post = Post::find($post_id);
