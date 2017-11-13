@@ -8,7 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Model;
 class User extends Authenticatable
 //class User extends Model
-{
+{  
+
+   public function post()
+   {
+       return $this->hasMany('App\Post');
+   }
    // use Notifiable;
 
     /**
