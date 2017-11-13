@@ -16,9 +16,8 @@
       <a href="{{url('/posts/' . $post->id)}}" class="btn btn-primary">Read More &rarr;</a>
     </div>
     <div class="card-footer text-muted">
-      {{$post->created_at}} by <!-- 這裡要寫{{$post->user}} -->
-      <!--  不是物件，是一個array  -->
-      <a href="#">{{ App\User::find($post->user_id)['name'] }}</a>
+      {{$post->created_at}} by 
+      <a href="#">{{ $post->user->name }}</a>
       <!-- 要在model 中建立關聯後再來改 -->
     </div>
   </div>

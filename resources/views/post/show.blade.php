@@ -7,7 +7,7 @@
   </h1>
   <!-- Blog Post -->
   <div class="card mb-4">
-    <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+    <img class="card-img-top" src="{{$post->image}}" alt="Card image cap">
     <div class="card-body">
       <h2 class="card-title">{{$post->title}}</h2>
       <p class="card-text">{{$post->content}}</p>
@@ -15,7 +15,7 @@
     </div>
     <div class="card-footer text-muted">
       {{$post->created_at}} by <!-- 這裡要寫{{$post->user}} -->
-      <a href="#">{{ App\User::find($post->user_id)['name'] }}</a>
+      <a href="#">{{ $post->user->name }}</a>
     </div>
   </div>
     @if ($post->user_id == \Auth::id())
