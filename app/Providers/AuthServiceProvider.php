@@ -10,10 +10,13 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * The policy mappings for the application.
      *
+     1.php artisan make:policy PostPolicy --model=Modelname
+     2.register here
      * @var array
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
+         Post::class => PostPolicy::class
     ];
 
     /**

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
-
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
        /*
@@ -12,8 +11,6 @@ use Illuminate\Support\Facades\Storage;
        2.http method get post put patch delete
        3.慣例默認設置 有哪些？（可以寫最少code）
        */  
-//是否可以寫一個檔然後include進來？
-//這樣就不用每個需要的都再寫一次
 use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
@@ -22,15 +19,12 @@ class PostController extends Controller
          $posts = Post::orderBy('created_at', 'desc')->get();
          return view("post/index", compact('posts'));
      }
-   
      public function show(Post $post)
      {   //使用model綁定
          return view('post/show', compact('post'));
      }
-   
      public function create()
      {
-        
         //有登入才可以發文
         if(Auth::check())
         {  
@@ -45,13 +39,13 @@ class PostController extends Controller
      public function store(/*Post $post*/)
      {   //dd($post);
          //不曉得為什直接存會放在/storage/app/ 而不是storage/app/public/
+         $post = new Post;
          $path = request()->file('image')->storePublicly($post->user_id);
          //預設的公開路徑是在/storage/app/public/  所以把檔案移動
          Storage::move($path,"public/$path");
          //公開的路徑是/public/這個位置,使用命令創造了路徑連結 /public/storage/  等於  /storage/app/public/
          $image = "/storage/" . $path;
          //要存入的值
-         $post = new Post;
          $post->title = request()->title;
          $post->content = request()->content;
          $post->user_id = \Auth::id();
@@ -72,7 +66,6 @@ class PostController extends Controller
          {   //這邊應該要順便回傳error message
          return redirect('posts/create');
          } 
-                        
      }
      public function edit(/*Post $post*/  /*$post*/)
      {   
